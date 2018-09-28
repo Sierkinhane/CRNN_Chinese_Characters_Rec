@@ -16,8 +16,8 @@ before traning, you should prepare the dataset of characters.(described in csdn 
 ## 3.6 million chinese characters dataset：
 ![](https://github.com/Sierkinhane/LearningRecords/blob/master/chinese_char.png)
 
-## Data generator:
-
+## [Data generator]:
+https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/data_generator.png
 
 ## Results：
 ![](https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/1.png)
