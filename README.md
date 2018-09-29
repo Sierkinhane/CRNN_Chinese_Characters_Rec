@@ -25,6 +25,7 @@ before traning, you should prepare the dataset of characters.(described in csdn 
 
 ## Training(accuray was 97.7% ultimately):
 ![](https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/3.png)
+![](https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/4.png)
 
 
 # If interested in Machine Learning, you can refer to the other repository:
