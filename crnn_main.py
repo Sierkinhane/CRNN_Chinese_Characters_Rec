@@ -132,7 +132,7 @@ if __name__ == '__main__':
     else:
         sampler = None
 
-    # images will be resize to 32*100
+    # images will be resize to 32*160
     train_loader = torch.utils.data.DataLoader(
         train_dataset, batch_size=params.batchSize,
         shuffle=True, sampler=sampler,
@@ -140,9 +140,9 @@ if __name__ == '__main__':
         collate_fn=dataset.alignCollate(imgH=params.imgH, imgW=params.imgW, keep_ratio=params.keep_ratio))
 
     # read test set
-    # images will be resize to 32*100
+    # images will be resize to 32*160
     test_dataset = dataset.lmdbDataset(
-        root=opt.valroot, transform=dataset.resizeNormalize((256, 32)))
+        root=opt.valroot, transform=dataset.resizeNormalize((160, 32)))
 
     nclass = len(params.alphabet) + 1
     nc = 1
