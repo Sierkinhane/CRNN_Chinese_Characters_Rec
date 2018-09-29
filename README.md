@@ -26,3 +26,33 @@ before traning, you should prepare the dataset of characters.(described in csdn 
 ## Training(accuray was 97.7% ultimately):
 ![](https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/3.png)
 
+## If interested in Machine Learning, you can refer to the other repository:
+
+# CS229-ML-Implements
+Implements of cs229(Machine Leaning taught by Andrew Ng) in python.
+
+# CS229 Machine Learning Xmind:
+![](https://github.com/Sierkinhane/CS229-ML-Implements/blob/master/GIF/ml-xmind.png)
+
+# CS229 Machine Learning course and notes:
+[OpenCourse](http://open.163.com/special/opencourse/machinelearning.html)
+
+[cs229-Notes](https://github.com/Sierkinhane/CS229-ML-Implements/tree/master/CS229-Notes)
+
+# Examples
+
+## [Linear Regression](https://github.com/Sierkinhane/CS229-ML-Implements/tree/master/00-SupervisedLearning/01-LinearRegression)
+![](https://github.com/Sierkinhane/CS229-ML-Implements/blob/master/GIF/regression.gif)
+
+## [Locally Weighted Regression](https://github.com/Sierkinhane/CS229-ML-Implements/tree/master/00-SupervisedLearning/01-LinearRegression)
+![](https://github.com/Sierkinhane/CS229-ML-Implements/blob/master/GIF/LWR.gif)
+
+## [Logistic Regression](https://github.com/Sierkinhane/CS229-ML-Implements/tree/master/00-SupervisedLearning/02-Classification)
+![](https://github.com/Sierkinhane/CS229-ML-Implements/blob/master/GIF/logisticR.gif)
+
+## [Softmax Regression](https://github.com/Sierkinhane/CS229-ML-Implements/tree/master/00-SupervisedLearning/03-GeneralizedLinearModels)
+![](https://github.com/Sierkinhane/CS229-ML-Implements/blob/master/GIF/softmaxR.gif)
+
+## TO BE CONTINUED
+
+
