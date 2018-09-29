@@ -28,6 +28,7 @@ before traning, you should prepare the dataset of characters.(described in csdn 
 
 
 # If interested in Machine Learning, you can refer to the other repository:
+https://github.com/Sierkinhane/CS229-ML-Implements
 
 # CS229-ML-Implements
 Implements of cs229(Machine Leaning taught by Andrew Ng) in python.
