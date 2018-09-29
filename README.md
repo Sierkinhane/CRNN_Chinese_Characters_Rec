@@ -26,7 +26,8 @@ before traning, you should prepare the dataset of characters.(described in csdn 
 ## Training(accuray was 97.7% ultimately):
 ![](https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/3.png)
 
-## If interested in Machine Learning, you can refer to the other repository:
+
+# If interested in Machine Learning, you can refer to the other repository:
 
 # CS229-ML-Implements
 Implements of cs229(Machine Leaning taught by Andrew Ng) in python.
