@@ -56,6 +56,11 @@ Implements of cs229(Machine Leaning taught by Andrew Ng) in python.
 ## [Softmax Regression](https://github.com/Sierkinhane/CS229-ML-Implements/tree/master/00-SupervisedLearning/03-GeneralizedLinearModels)
 ![](https://github.com/Sierkinhane/CS229-ML-Implements/blob/master/GIF/softmaxR.gif)
 
+## [Gaussian Discriminant Analysis](https://github.com/Sierkinhane/CS229-ML-Implements/tree/master/00-SupervisedLearning/04-GenerativeLearningAlgorithms)
+![](https://github.com/Sierkinhane/CS229-ML-Implements/blob/master/GIF/GDA.png)
+![](https://github.com/Sierkinhane/CS229-ML-Implements/blob/master/GIF/GDA2.png)
+
+
 ## TO BE CONTINUED
 
 
