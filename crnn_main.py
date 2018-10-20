@@ -123,6 +123,10 @@ if __name__ == '__main__':
     np.random.seed(manualSeed)
     torch.manual_seed(manualSeed)
     cudnn.benchmark = True
+    
+    # store model path
+    if not os.path.exists('./expr):
+        os.mkdir('./expr')
 
     # read train set
     train_dataset = dataset.lmdbDataset(root=opt.trainroot)
