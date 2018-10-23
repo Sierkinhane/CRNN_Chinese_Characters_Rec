@@ -28,9 +28,6 @@ before traning, you should prepare the dataset of characters.(described in csdn 
 ![](https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/4.png)
 
 
-# If interested in Machine Learning, you can refer to the other repository:
-  https://github.com/Sierkinhane/CS229-ML-Implements
-
 # If interested in Face detection, you can refer to the other repository:
   MTCNN https://github.com/Sierkinhane/mtcnn-pytorch
   
@@ -39,6 +36,9 @@ before traning, you should prepare the dataset of characters.(described in csdn 
   ![](https://github.com/Sierkinhane/mtcnn-pytorch/blob/master/results/r_1.jpg)
   ![](https://github.com/Sierkinhane/mtcnn-pytorch/blob/master/results/r_2.jpg)
   ![](https://github.com/Sierkinhane/mtcnn-pytorch/blob/master/results/r_3.jpg)
+
+# If interested in Machine Learning, you can refer to the other repository:
+  https://github.com/Sierkinhane/CS229-ML-Implements
 
 # CS229-ML-Implements
 Implements of cs229(Machine Leaning taught by Andrew Ng) in python.
