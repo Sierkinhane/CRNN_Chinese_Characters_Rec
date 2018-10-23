@@ -32,7 +32,7 @@ before traning, you should prepare the dataset of characters.(described in csdn 
   https://github.com/Sierkinhane/CS229-ML-Implements
 
 # If interested in Face detection, you can refer to the other repository:
-  MTCNN[https://github.com/Sierkinhane/mtcnn-pytorch]
+  [MTCNN](https://github.com/Sierkinhane/mtcnn-pytorch)
   results:
   ![](https://github.com/Sierkinhane/mtcnn-pytorch/blob/master/results/r_1.jpg)
   ![](https://github.com/Sierkinhane/mtcnn-pytorch/blob/master/results/r_2.jpg)
