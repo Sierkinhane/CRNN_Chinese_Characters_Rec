@@ -5,12 +5,12 @@ chinese characters recognition
 
 ## Test
 There are images in test_images file, and you just run as follow.
-> python3 test.py
+* python3 test.py
 
 ## Train
 before traning, you should prepare the dataset of characters.(described in csdn blog)
 
-> python3 crnn_main.py --train_root (path of train lmdb dataset) --val_root (path of val lmdb dataset) --cuda(if have)
+* python3 crnn_main.py --train_root (path of train lmdb dataset) --val_root (path of val lmdb dataset) --cuda(if have)
 
 
 ## 3.6 million chinese characters dataset：
