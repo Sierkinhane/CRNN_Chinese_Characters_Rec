@@ -28,7 +28,6 @@ def writeCache(env, cache):
         for k, v in cache.items():
             txn.put(str(k).encode('utf-8'), str(v).encode('utf-8'))
 
-
 def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkValid=True):
     """
     Create LMDB dataset for CRNN training.
