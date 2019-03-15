@@ -1,5 +1,6 @@
+# coding:utf-8
 import os
-import lmdb # install lmdb by "pip install lmdb"
+import lmdb  # install lmdb by "pip install lmdb"
 import cv2
 import re
 from PIL import Image
@@ -18,18 +19,15 @@ def checkImageIsValid(imageBin):
         return False
     else:
         if imgH * imgW == 0:
-            return False		
+            return False
     return True
 
 
 def writeCache(env, cache):
     with env.begin(write=True) as txn:
         for k, v in cache.items():
-    		if (isinstance(v, bytes)):
-                	txn.put(k.encode(), v)
-            	else:
-                	txn.put(k.encode(), v.encode())
-			
+            txn.put(str(k).encode('utf-8'), str(v).encode('utf-8'))
+
 def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkValid=True):
     """
     Create LMDB dataset for CRNN training.
@@ -40,23 +38,22 @@ def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkV
         lexiconList   : (optional) list of lexicon lists
         checkValid    : if true, check the validity of every image
     """
-    assert(len(imagePathList) == len(labelList))
+    assert (len(imagePathList) == len(labelList))
     nSamples = len(imagePathList)
-    env = lmdb.open(outputPath, map_size=1099511627776)
+    env = lmdb.open(outputPath, map_size=40000000000)
     cache = {}
     cnt = 1
-    for i in range(nSamples):   
-        imagePath = ''.join(imagePathList[i]).split()[0].replace('\n','').replace('\r\n','')
-        #print(imagePath)
-        label = ''.join(labelList[i])
+    for i in range(nSamples):
+        imagePath = imagePathList[i].replace('\n', '').replace('\r\n', '')
+        # print(imagePath)
+        label = labelList[i]
         print(label)
         # if not os.path.exists(imagePath):
         #     print('%s does not exist' % imagePath)
         #     continue	
-		
-        with open('.'+imagePath, 'r') as f:
-            imageBin = f.read()
 
+        with open(imagePath, 'rb') as f:
+            imageBin = f.read()
 
         if checkValid:
             if not checkImageIsValid(imageBin):
@@ -75,20 +72,23 @@ def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkV
             print('Written %d / %d' % (cnt, nSamples))
         cnt += 1
         print(cnt)
-    nSamples = cnt-1
+    nSamples = cnt - 1
     cache['num-samples'] = str(nSamples)
     writeCache(env, cache)
     print('Created dataset with %d samples' % nSamples)
-	
+
 
 if __name__ == '__main__':
     outputPath = "./lmdb"
-    imgdata = open("./train.txt")
-    imagePathList = list(imgdata)
-    
+    imgdata = open("E:/datasets/text/360label/360_train.txt", mode='rb')
+    lines = list(imgdata)
+
+    imgDir = 'E:/datasets/text/images/'
+    imgPathList = []
     labelList = []
-    for line in imagePathList:
+    for line in lines:
+        imgPath = os.path.join(imgDir, line.split()[0].decode('utf-8'))
+        imgPathList.append(imgPath)
         word = line.split()[1]
         labelList.append(word)
-    createDataset(outputPath, imagePathList, labelList)
-
+    createDataset(outputPath, imgPathList, labelList)
