@@ -27,6 +27,12 @@ def writeCache(env, cache):
     with env.begin(write=True) as txn:
         for k, v in cache.items():
             txn.put(str(k).encode('utf-8'), str(v).encode('utf-8'))
+        # or
+        #    if (isinstance(v, bytes)):
+        #        txn.put(k.encode(), v)
+        #    else:
+        #        txn.put(k.encode(), v.encode())
+        # both are ok.
 
 def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkValid=True):
     """
