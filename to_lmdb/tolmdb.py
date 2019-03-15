@@ -25,7 +25,10 @@ def checkImageIsValid(imageBin):
 def writeCache(env, cache):
     with env.begin(write=True) as txn:
         for k, v in cache.items():
-            txn.put(k, v)
+    		if (isinstance(v, bytes)):
+                	txn.put(k.encode(), v)
+            	else:
+                	txn.put(k.encode(), v.encode())
 			
 def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkValid=True):
     """
