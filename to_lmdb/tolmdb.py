@@ -6,6 +6,33 @@ import re
 from PIL import Image
 import numpy as np
 import imghdr
+import argparse
+
+
+def init_args():
+    args = argparse.ArgumentParser()
+    args.add_argument('-i',
+                      '--image_dir',
+                      type=str,
+                      help='The directory of the dataset , which contains the images',
+                      default='E:/datasets/text/images/')
+    args.add_argument('-l',
+                      '--label_file',
+                      type=str,
+                      help='The file which contains the paths and the labels of the data set',
+                      default='E:/datasets/text/annotation_test.txt')
+    args.add_argument('-s',
+                      '--save_dir',
+                      type=str
+                      , help='The generated mdb file save dir',
+                      default='./lmdb')
+    args.add_argument('-m',
+                      '--map_size',
+                      help='map size of lmdb',
+                      type=int,
+                      default=4000000000)
+
+    return args.parse_args()
 
 
 def checkImageIsValid(imageBin):
@@ -29,7 +56,7 @@ def writeCache(env, cache):
             txn.put(str(k).encode('utf-8'), str(v).encode('utf-8'))
 
 
-def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkValid=True):
+def createDataset(outputPath, imagePathList, labelList, map_size, lexiconList=None, checkValid=True):
     """
     Create LMDB dataset for CRNN training.
     ARGS:
@@ -41,7 +68,7 @@ def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkV
     """
     assert (len(imagePathList) == len(labelList))
     nSamples = len(imagePathList)
-    env = lmdb.open(outputPath, map_size=40000000000)
+    env = lmdb.open(outputPath, map_size=map_size)
     cache = {}
     cnt = 1
     for i in range(nSamples):
@@ -80,11 +107,11 @@ def createDataset(outputPath, imagePathList, labelList, lexiconList=None, checkV
 
 
 if __name__ == '__main__':
-    outputPath = "./lmdb"
-    imgdata = open("E:/datasets/text/360label/360_train.txt", mode='rb')
+    args = init_args()
+    imgdata = open(args.label_file, mode='rb')
     lines = list(imgdata)
 
-    imgDir = 'E:/datasets/text/images/'
+    imgDir = args.image_dir
     imgPathList = []
     labelList = []
     for line in lines:
@@ -92,4 +119,4 @@ if __name__ == '__main__':
         imgPathList.append(imgPath)
         word = line.split()[1]
         labelList.append(word)
-    createDataset(outputPath, imgPathList, labelList)
+    createDataset(args.save_dir, imgPathList, labelList, args.map_size)
