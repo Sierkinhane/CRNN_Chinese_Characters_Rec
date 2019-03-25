@@ -125,7 +125,7 @@ if __name__ == '__main__':
     cudnn.benchmark = True
     
     # store model path
-    if not os.path.exists('./expr):
+    if not os.path.exists('./expr'):
         os.mkdir('./expr')
 
     # read train set
