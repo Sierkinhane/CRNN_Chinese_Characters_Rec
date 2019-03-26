@@ -7,7 +7,7 @@ import torch.optim as optim
 import torch.utils.data
 from torch.autograd import Variable
 import numpy as np
-from warpctc_pytorch import CTCLoss
+# from warpctc_pytorch import CTCLoss
 import os
 import utils
 import dataset
@@ -15,13 +15,15 @@ import models.crnn as crnn
 import re
 import params
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--trainroot', required=True, help='path to dataset')
-parser.add_argument('--valroot', required=True, help='path to dataset')
-parser.add_argument('--cuda', action='store_true', help='enables cuda')
 
-opt = parser.parse_args()
-print(opt)
+def init_args():
+    args = argparse.ArgumentParser()
+    args.add_argument('--trainroot', help='path to dataset', default='./to_lmdb/train')
+    args.add_argument('--valroot', help='path to dataset', default='./to_lmdb/train')
+    args.add_argument('--cuda', action='store_true', help='enables cuda', default=False)
+
+    return args.parse_args()
+
 
 # custom weights initialization called on crnn
 def weights_init(m):
@@ -69,18 +71,17 @@ def val(net, dataset, criterion, max_iter=100):
             if pred == target:
                 n_correct += 1
 
-    
     raw_preds = converter.decode(preds.data, preds_size.data, raw=True)[:params.n_test_disp]
     for raw_pred, pred, gt in zip(raw_preds, sim_preds, list_1):
         print('%-20s => %-20s, gt: %-20s' % (raw_pred, pred, gt))
 
     print(n_correct)
-    print(max_iter*params.batchSize)
+    print(max_iter * params.batchSize)
     accuracy = n_correct / float(max_iter * params.batchSize)
     print('Test loss: %f, accuray: %f' % (loss_avg.val(), accuracy))
 
 
-def trainBatch(net, criterion, optimizer, train_iter):
+def trainBatch(crnn, criterion, optimizer, train_iter):
     data = train_iter.next()
     cpu_images, cpu_texts = data
     batch_size = cpu_images.size(0)
@@ -95,7 +96,9 @@ def trainBatch(net, criterion, optimizer, train_iter):
     cost.backward()
     optimizer.step()
     return cost
-def training():
+
+
+def training(crnn,train_loader,criterion,optimizer):
     for total_steps in range(params.niter):
         train_iter = iter(train_loader)
         i = 0
@@ -113,23 +116,24 @@ def training():
                 loss_avg.reset()
             if i % params.valInterval == 0:
                 val(crnn, test_dataset, criterion)
-        if (total_steps+1) % params.saveInterval == 0:
+        if (total_steps + 1) % params.saveInterval == 0:
             torch.save(crnn.state_dict(), '{0}/crnn_Rec_done_{1}_{2}.pth'.format(params.experiment, total_steps, i))
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
+    args = init_args()
     manualSeed = random.randint(1, 10000)  # fix seed
     random.seed(manualSeed)
     np.random.seed(manualSeed)
     torch.manual_seed(manualSeed)
     cudnn.benchmark = True
-    
+
     # store model path
     if not os.path.exists('./expr'):
         os.mkdir('./expr')
 
     # read train set
-    train_dataset = dataset.lmdbDataset(root=opt.trainroot)
+    train_dataset = dataset.lmdbDataset(root=args.trainroot)
     assert train_dataset
     if not params.random_sample:
         sampler = dataset.randomSequentialSampler(train_dataset, params.batchSize)
@@ -143,16 +147,18 @@ if __name__ == '__main__':
         num_workers=int(params.workers),
         collate_fn=dataset.alignCollate(imgH=params.imgH, imgW=params.imgW, keep_ratio=params.keep_ratio))
 
+
     # read test set
     # images will be resize to 32*160
     test_dataset = dataset.lmdbDataset(
-        root=opt.valroot, transform=dataset.resizeNormalize((160, 32)))
+        root=args.valroot, transform=dataset.resizeNormalize((160, 32)))
 
     nclass = len(params.alphabet) + 1
     nc = 1
 
     converter = utils.strLabelConverter(params.alphabet)
-    criterion = CTCLoss()
+    # criterion = CTCLoss()
+    criterion = torch.nn.CTCLoss()
 
     # cnn and rnn
     image = torch.FloatTensor(params.batchSize, 3, params.imgH, params.imgH)
@@ -160,7 +166,7 @@ if __name__ == '__main__':
     length = torch.IntTensor(params.batchSize)
 
     crnn = crnn.CRNN(params.imgH, nc, nclass, params.nh)
-    if opt.cuda:
+    if args.cuda:
         crnn.cuda()
         image = image.cuda()
         criterion = criterion.cuda()
@@ -186,4 +192,4 @@ if __name__ == '__main__':
     else:
         optimizer = optim.RMSprop(crnn.parameters(), lr=params.lr)
 
-    training()
+    training(crnn,train_loader,criterion,optimizer)

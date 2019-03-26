@@ -15,17 +15,17 @@ def init_args():
                       '--image_dir',
                       type=str,
                       help='The directory of the dataset , which contains the images',
-                      default='E:/datasets/text/images/')
+                      default='train_images')
     args.add_argument('-l',
                       '--label_file',
                       type=str,
                       help='The file which contains the paths and the labels of the data set',
-                      default='E:/datasets/text/annotation_test.txt')
+                      default='train.txt')
     args.add_argument('-s',
                       '--save_dir',
                       type=str
                       , help='The generated mdb file save dir',
-                      default='./lmdb')
+                      default='train')
     args.add_argument('-m',
                       '--map_size',
                       help='map size of lmdb',
@@ -39,7 +39,7 @@ def checkImageIsValid(imageBin):
     if imageBin is None:
         return False
     try:
-        imageBuf = np.fromstring(imageBin, dtype=np.uint8)
+        imageBuf = np.frombuffer(imageBin, dtype=np.uint8)
         img = cv2.imdecode(imageBuf, cv2.IMREAD_GRAYSCALE)
         imgH, imgW = img.shape[0], img.shape[1]
     except:
@@ -53,8 +53,11 @@ def checkImageIsValid(imageBin):
 def writeCache(env, cache):
     with env.begin(write=True) as txn:
         for k, v in cache.items():
-            txn.put(str(k).encode('utf-8'), str(v).encode('utf-8'))
-
+            if type(k) == str:
+                k = k.encode()
+            if type(v) == str:
+                v = v.encode()
+            txn.put(k,v)
 
 def createDataset(outputPath, imagePathList, labelList, map_size, lexiconList=None, checkValid=True):
     """
@@ -69,9 +72,11 @@ def createDataset(outputPath, imagePathList, labelList, map_size, lexiconList=No
     assert (len(imagePathList) == len(labelList))
     nSamples = len(imagePathList)
     env = lmdb.open(outputPath, map_size=map_size)
+    # env = lmdb.open(outputPath)
     cache = {}
-    cnt = 1
+    cnt = 0
     for i in range(nSamples):
+        print(cnt)
         imagePath = imagePathList[i].replace('\n', '').replace('\r\n', '')
         # print(imagePath)
         label = labelList[i]
@@ -94,15 +99,15 @@ def createDataset(outputPath, imagePathList, labelList, map_size, lexiconList=No
         if lexiconList:
             lexiconKey = 'lexicon-%09d' % cnt
             cache[lexiconKey] = ' '.join(lexiconList[i])
-        if cnt % 1000 == 0:
+        if cnt != 0 and cnt % 1000 == 0:
             writeCache(env, cache)
             cache = {}
             print('Written %d / %d' % (cnt, nSamples))
         cnt += 1
-        print(cnt)
-    nSamples = cnt - 1
+
     cache['num-samples'] = str(nSamples)
     writeCache(env, cache)
+    env.close()
     print('Created dataset with %d samples' % nSamples)
 
 

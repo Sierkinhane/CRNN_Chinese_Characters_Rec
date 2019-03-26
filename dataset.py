@@ -29,23 +29,22 @@ class lmdbDataset(Dataset):
             sys.exit(0)
 
         with self.env.begin(write=False) as txn:
-
-            str = 'num-samples'
-            nSamples = int(txn.get(str.encode()))
+            str = 'num-samples'.encode('utf-8')
+            nSamples = int(txn.get(str))
             self.nSamples = nSamples
 
         self.transform = transform
         self.target_transform = target_transform
 
     def __len__(self):
-        return self.nSamples
+        return self.nSamples + 1
 
     def __getitem__(self, index):
         assert index <= len(self), 'index range error'
         index += 1
         with self.env.begin(write=False) as txn:
             img_key = 'image-%09d' % index
-            imgbuf = txn.get(img_key.encode())
+            imgbuf = txn.get(img_key.encode('utf-8'))
 
             buf = six.BytesIO()
             buf.write(imgbuf)
