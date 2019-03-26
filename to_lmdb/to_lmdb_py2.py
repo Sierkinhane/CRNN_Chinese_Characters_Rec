@@ -75,4 +75,9 @@ if __name__ == '__main__':
     for line in imagePathList:
         word = line.split()[1]
         labelList.append(word)
+<<<<<<< HEAD
     createDataset(outputPath, imagePathList, labelList)
+=======
+    createDataset(outputPath, imagePathList, labelList)
+
+>>>>>>> b329e7c02cd3e981eae5b9cfdd072ab857b5718f
