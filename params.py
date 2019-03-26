@@ -17,5 +17,5 @@ niter = 300
 nh = 256
 imgW = 160
 imgH = 32
-batchSize = 16
-workers = 2
+batchSize = 1
+workers = 0
