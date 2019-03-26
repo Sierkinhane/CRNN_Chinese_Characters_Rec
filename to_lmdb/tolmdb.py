@@ -71,8 +71,8 @@ def createDataset(outputPath, imagePathList, labelList, map_size, lexiconList=No
     """
     assert (len(imagePathList) == len(labelList))
     nSamples = len(imagePathList)
-    # env = lmdb.open(outputPath, map_size=map_size)
-    env = lmdb.open(outputPath)
+    env = lmdb.open(outputPath, map_size=map_size)
+    # env = lmdb.open(outputPath)
     cache = {}
     cnt = 0
     for i in range(nSamples):
