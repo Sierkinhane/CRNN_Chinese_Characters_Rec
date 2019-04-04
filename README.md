@@ -1,4 +1,4 @@
-# Crnn_chinese_characters_rec(考研中...issues不会及时回复)
+# Crnn_chinese_characters_rec
 chinese characters recognition
 
 ## Descriptions in chinese：https://blog.csdn.net/Sierkinhane/article/details/82857572
