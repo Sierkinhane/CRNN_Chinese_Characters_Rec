@@ -27,6 +27,7 @@ before traning, you should prepare the dataset of characters.(described in csdn 
 ![](https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/3.png)
 ![](https://github.com/Sierkinhane/crnn_chinese_characters_rec/blob/master/test_images/4.png)
 
+##(This repository is based on https://github.com/meijieru/crnn.pytorch)
 
 # If interested in Face detection, you can refer to the other repository:
   MTCNN https://github.com/Sierkinhane/mtcnn-pytorch
