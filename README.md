@@ -1,3 +1,6 @@
+# [NEW REPOSITORY FOR POSE ESTIMATION](https://github.com/Sierkinhane/AtrousPose/blob/master/README.md)
+![](https://github.com/Sierkinhane/AtrousPose/blob/master/images/demo2.png)
+
 # Crnn_chinese_characters_rec
 chinese characters recognition
 
