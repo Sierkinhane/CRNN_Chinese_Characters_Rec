@@ -1,5 +1,5 @@
 import torch.nn as nn
-
+import torch.nn.functional as F
 
 class BidirectionalLSTM(nn.Module):
     # Inputs hidden units Out
@@ -69,14 +69,11 @@ class CRNN(nn.Module):
         # conv features
         #print('---forward propagation---')
         conv = self.cnn(input)
-        # print(conv.size()) batch_size*512*1*with
         b, c, h, w = conv.size()
         assert h == 1, "the height of conv must be 1"
         conv = conv.squeeze(2) # b *512 * width
         conv = conv.permute(2, 0, 1)  # [w, b, c]
-        #print(conv.size()) # width batch_size channel
-        # rnn features
-        output = self.rnn(conv)
-        #print(output.size(0))
-        # print(output.size())# width*batch_size*nclass
+        output = F.log_softmax(self.rnn(conv), dim=2)
+        return output
+h*batch_size*nclass
         return output
