@@ -1,13 +1,14 @@
 import alphabets
 
 random_sample = True
+best_accuracy = 0
 keep_ratio = False
 adam = False
 adadelta = False
 saveInterval = 2
-valInterval = 800
+valInterval = 400
 n_test_disp = 10
-displayInterval = 5
+displayInterval = 1
 experiment = './expr'
 alphabet = alphabets.alphabet
 crnn = ''
@@ -17,5 +18,6 @@ niter = 300
 nh = 256
 imgW = 160
 imgH = 32
-batchSize = 1
-workers = 0
+val_batchSize = 16
+batchSize = 32
+workers = 2
