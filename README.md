@@ -13,7 +13,7 @@ There are images in test_images file, and you just run it as follow.
 
 ## Train
 before traning, you should prepare the dataset of characters.(described in csdn blog)
-* python3 preprocessing.py prepare train.txt and test.txt 
+* python3 preprocessing.py to prepare train.txt and test.txt 
 * modify the path to images, train.txt and test.txt in crnn_main_v2.py
 * python3 crnn_main_v2.py --cuda
 
