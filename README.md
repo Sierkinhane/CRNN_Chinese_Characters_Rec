@@ -8,7 +8,7 @@ chinese characters recognition
 * remove lmdb dataloader
 * fix ctc loss
 ## Test
-There are images in test_images file, and you just run as follow.
+There are images in test_images file, and you just run it as follow.
 * python3 test.py
 
 ## Train
