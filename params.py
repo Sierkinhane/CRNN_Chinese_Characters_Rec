@@ -1,7 +1,7 @@
 import alphabets
 
 random_sample = True
-best_accuracy = 0
+best_accuracy = 50
 keep_ratio = False
 adam = False
 adadelta = False
