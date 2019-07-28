@@ -11,7 +11,7 @@ with open('../test.txt') as file:
 	value_list = ['%s %s'%(segment_list.split(' ')[0], ''.join([char_dict[int(val)] for val in segment_list[:-1].split(' ')[1:]])) for segment_list in file.readlines()]
 
 # final output
-with open('output.txt', 'w', encoding='utf-8') as file:
+with open('train.txt', 'w', encoding='utf-8') as file:
 	[ file.write(val+'\n') for val in value_list]
 
 '''
