@@ -75,5 +75,3 @@ class CRNN(nn.Module):
         conv = conv.permute(2, 0, 1)  # [w, b, c]
         output = F.log_softmax(self.rnn(conv), dim=2)
         return output
-h*batch_size*nclass
-        return output
