@@ -103,8 +103,6 @@ def train(crnn, train_loader, criterion, iteration):
         cost.backward()
         optimizer.step()
         loss_avg.add(cost)
-        if i_batch == 100:
-            break
         if (i_batch+1) % params.displayInterval == 0:
             print('[%d/%d][%d/%d] Loss: %f' %
                   (iteration, params.niter, i_batch, len(train_loader), loss_avg.val()))
