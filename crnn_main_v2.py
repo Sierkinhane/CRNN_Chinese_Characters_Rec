@@ -125,6 +125,11 @@ def main(crnn, train_loader, val_loader, criterion, optimizer):
             torch.save(crnn.state_dict(), '{0}/crnn_best.pth'.format(params.experiment))
         print("is best accuracy: {0}".format(accuracy > params.best_accuracy))
         Iteration+=1
+        
+    def backward_hook(self, grad_input, grad_output):
+        for g in grad_input:
+            g[g != g] = 0   # replace all nan/inf in gradients to zero
+
 
 if __name__ == '__main__':
 
@@ -177,5 +182,5 @@ if __name__ == '__main__':
     else:
         optimizer = optim.RMSprop(crnn.parameters(), lr=params.lr)
 
-
+    crnn.register_backward_hook(backward_hook)
     main(crnn, train_loader, val_loader, criterion, optimizer)
