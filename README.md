@@ -13,7 +13,9 @@ There are images in test_images file, and you just run it as follow.
 
 ## Train
 before traning, you should prepare the dataset of characters.(described in csdn blog)
-* python3 preprocessing.py to prepare train.txt and test.txt 
+* python3 preprocessing.py to prepare train.txt and test.txt or [download](https://pan.baidu.com/s/1rd4tm0sCq5fFgB2ziUxcrA) password:w877 
+
+复制这段内容后打开百度网盘手机App，操作更方便哦)
 * [modify the path to images, train.txt and test.txt in crnn_main_v2.py](https://github.com/Sierkinhane/crnn_chinese_characters_rec/issues/124#issuecomment-515996489)
 * python3 crnn_main_v2.py --cuda
 
