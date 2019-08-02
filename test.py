@@ -1,44 +1,42 @@
 import numpy as np
 import sys, os
 import time
-
+import cv2
 sys.path.append(os.getcwd())
-
-
 # crnn packages
 import torch
 from torch.autograd import Variable
 import utils
-import dataset
-from PIL import Image
 import models.crnn as crnn
 import alphabets
+import params
 str1 = alphabets.alphabet
 
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument('--images_path', type=str, default='test_images/test1.png', help='the path to your images')
+parser.add_argument('--images_path', type=str, default='test_images/test2.png', help='the path to your images')
 opt = parser.parse_args()
 
 
 # crnn params
 # 3p6m_third_ac97p8.pth
-crnn_model_path = 'trained_models/mixed_second_finetune_acc97p7.pth'
+crnn_model_path = 'trained_models/crnn_Rec_done_1.pth'
 alphabet = str1
 nclass = len(alphabet)+1
-
 
 # crnn文本信息识别
 def crnn_recognition(cropped_image, model):
 
     converter = utils.strLabelConverter(alphabet)
-  
-    image = cropped_image.convert('L')
-
-    ## 
-    w = int(image.size[0] / (280 * 1.0 / 160))
-    transformer = dataset.resizeNormalize((w, 32))
-    image = transformer(image)
+    image = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2GRAY)
+    ### ratio
+    ### 280是中文训练集中图片的宽度，160是将原始图片缩小后的图片宽度
+    w_now = int(image.shape[1] / (280 * 1.0 / params.imgW))
+    h, w = image.shape
+    image = cv2.resize(image, (0,0), fx=w_now/w, fy=params.imgH/h, interpolation=cv2.INTER_CUBIC)
+    image = (np.reshape(image, (params.imgH, w_now, 1))).transpose(2, 0, 1)
+    image = torch.from_numpy(image).type(torch.FloatTensor)
+    image.sub_(0.5).div_(0.5)
     if torch.cuda.is_available():
         image = image.cuda()
     image = image.view(1, *image.size())
@@ -67,7 +65,7 @@ if __name__ == '__main__':
     
     started = time.time()
     ## read an image
-    image = Image.open(opt.images_path)
+    image = cv2.imread(opt.images_path)
 
     crnn_recognition(image, model)
     finished = time.time()
