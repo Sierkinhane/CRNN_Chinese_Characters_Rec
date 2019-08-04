@@ -21,3 +21,5 @@ imgH = 32
 val_batchSize = 16
 batchSize = 32
 workers = 2
+std = 0.193
+mean = 0.588
