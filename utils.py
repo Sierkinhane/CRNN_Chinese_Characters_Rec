@@ -174,9 +174,9 @@ def get_batch_label(d, i):
         label.append(list(d.labels[idx].values())[0])
     return label
 
-def compute_std_mean(txt_path, image_prefix, NUM=None ,channel=1):
+def compute_std_mean(txt_path, image_prefix, NUM=None):
     
-    imgs = np.zeros([params.imgH, params.imgW, 3, 1])
+    imgs = np.zeros([params.imgH, params.imgW, 1, 1])
     means, stds = [], []
     with open(txt_path, 'r') as file:
         contents = [c.strip().split(' ')[0] for c in file.readlines()]
@@ -188,13 +188,14 @@ def compute_std_mean(txt_path, image_prefix, NUM=None ,channel=1):
             file_name = contents[i]
             img_path = os.path.join(image_prefix, file_name)
             img = cv2.imread(img_path)
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             h, w = img.shape[:2]
             img = cv2.resize(img, (0,0), fx=params.imgW/w, fy=params.imgH/h, interpolation=cv2.INTER_CUBIC)
-            img = img[:, :, :, np.newaxis]
+            img = img[:, :, np.newaxis, np.newaxis]
             imgs = np.concatenate((imgs, img), axis=3)
     imgs = imgs.astype(np.float32) / 255.
 
-    for i in range(3):
+    for i in range(1):
         pixels = imgs[:, :, i, :].ravel()
         means.append(np.mean(pixels))
         stds.append(np.std(pixels))
@@ -203,4 +204,4 @@ def compute_std_mean(txt_path, image_prefix, NUM=None ,channel=1):
     # stdevs.reverse()
     # print(means, stds)
 
-    return stds[:channel], means[:channel]
+    return stds, means
