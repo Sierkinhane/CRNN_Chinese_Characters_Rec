@@ -48,6 +48,14 @@ class baiduDataset(Dataset):
 	# 	# 	npi = -1*np.ones(self.max_len-)
 
 	# 	return image
+	def preprocessing(self, image):
+
+		## already have been computed
+		image = image.astype(np.float32) / 255.
+		image = torch.from_numpy(image).type(torch.FloatTensor)
+		image.sub_(params.mean).div_(params.std)
+
+		return image
 
 	def __getitem__(self, index):
 		image_name = list(self.labels[index].keys())[0]
@@ -64,8 +72,7 @@ class baiduDataset(Dataset):
 		# 	image = cv2.resize(image, (0,0), fx=160/w, fy=32/h, interpolation=cv2.INTER_CUBIC)
 		image = cv2.resize(image, (0,0), fx=self.width/w, fy=self.hegiht/h, interpolation=cv2.INTER_CUBIC)
 		image = (np.reshape(image, (32, self.width, 1))).transpose(2, 0, 1)
-		image = torch.from_numpy(image).type(torch.FloatTensor)
-		image.sub_(0.5).div_(0.5)
+		image = self.preprocessing(image)
 
 		return image, index
 
