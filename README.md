@@ -8,7 +8,7 @@ chinese characters recognition
 * remove lmdb dataloader
 * fix ctc loss
 ## Test
-* [test model download](https://pan.baidu.com/s/13Jk1q94BUZYvSYgPJkDr9Q) password:t99a  
+* [download test model](https://pan.baidu.com/s/13Jk1q94BUZYvSYgPJkDr9Q) password:t99a  
 There are images in test_images file, and you just run it as follow.
 * python3 test.py
 
