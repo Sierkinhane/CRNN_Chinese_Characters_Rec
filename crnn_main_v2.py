@@ -17,13 +17,13 @@ import re
 import params
 from dataset_v2 import baiduDataset
 
-def init_args():
-    args = argparse.ArgumentParser()
-    args.add_argument('--trainroot', help='path to dataset', default='./to_lmdb/train')
-    args.add_argument('--valroot', help='path to dataset', default='./to_lmdb/train')
-    args.add_argument('--cuda', action='store_true', help='enables cuda', default=False)
+# def init_args():
+#     args = argparse.ArgumentParser()
+#     args.add_argument('--trainroot', help='path to dataset', default='./to_lmdb/train')
+#     args.add_argument('--valroot', help='path to dataset', default='./to_lmdb/train')
+#     args.add_argument('--cuda', action='store_true', help='enables cuda', default=False)
 
-    return args.parse_args()
+#     return args.parse_args()
 
 
 # custom weights initialization called on crnn
@@ -37,6 +37,7 @@ def weights_init(m):
 
 
 def val(net, val_loader, criterion, iteration, max_i=1000):
+    
     print('Start val')
     for p in crnn.parameters():
         p.requires_grad = False
@@ -46,9 +47,7 @@ def val(net, val_loader, criterion, iteration, max_i=1000):
     loss_avg = utils.averager()
 
     for i_batch, (image, index) in enumerate(val_loader):
-        if args.cuda:
-            image = image.cuda()
-            criterion = criterion.cuda()
+        image = image.to(device)
         label = utils.get_batch_label(val_dataset, index)
         preds = crnn(image)
         batch_size = image.size(0)
@@ -82,13 +81,12 @@ def val(net, val_loader, criterion, iteration, max_i=1000):
     return accuracy
 
 def train(crnn, train_loader, criterion, iteration):
+
     for p in crnn.parameters():
-            p.requires_grad = True
+        p.requires_grad = True
     crnn.train()
     for i_batch, (image, index) in enumerate(train_loader):
-        if args.cuda:
-            image = image.cuda()
-            criterion = criterion.cuda()
+        image = image.to(device)
         label = utils.get_batch_label(dataset, index)
         preds = crnn(image)
         batch_size = image.size(0)
@@ -98,11 +96,11 @@ def train(crnn, train_loader, criterion, iteration):
         # print(preds.shape, text.shape, preds_size.shape, length.shape)
         # torch.Size([41, 16, 6736]) torch.Size([160]) torch.Size([16]) torch.Size([16])
         cost = criterion(preds, text, preds_size, length) / batch_size
-
         crnn.zero_grad()
         cost.backward()
         optimizer.step()
         loss_avg.add(cost)
+
         if (i_batch+1) % params.displayInterval == 0:
             print('[%d/%d][%d/%d] Loss: %f' %
                   (iteration, params.niter, i_batch, len(train_loader), loss_avg.val()))
@@ -110,8 +108,8 @@ def train(crnn, train_loader, criterion, iteration):
 
 def main(crnn, train_loader, val_loader, criterion, optimizer):
 
-    if args.cuda:
-        crnn.cuda()
+    crnn = crnn.to(device)
+    certerion = criterion.to(device)
     Iteration = 0
     while Iteration < params.niter:
         train(crnn, train_loader, criterion, Iteration)
@@ -119,27 +117,22 @@ def main(crnn, train_loader, val_loader, criterion, optimizer):
         accuracy = val(crnn, val_loader, criterion, Iteration, max_i=1000)
         for p in crnn.parameters():
             p.requires_grad = True
-        crnn.train()
         if accuracy > params.best_accuracy:
             torch.save(crnn.state_dict(), '{0}/crnn_Rec_done_{1}_{2}.pth'.format(params.experiment, Iteration, accuracy))
             torch.save(crnn.state_dict(), '{0}/crnn_best.pth'.format(params.experiment))
         print("is best accuracy: {0}".format(accuracy > params.best_accuracy))
         Iteration+=1
-        
-def backward_hook(self, grad_input, grad_output):
-    for g in grad_input:
-        g[g != g] = 0   # replace all nan/inf in gradients to zero
-
 
 if __name__ == '__main__':
 
-    args = init_args()
+    # args = init_args()
     # manualSeed = random.randint(1, 10000)  # fix seed
     manualSeed=10
     random.seed(manualSeed)
     np.random.seed(manualSeed)
     torch.manual_seed(manualSeed)
     cudnn.benchmark = True
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     # alphabet = alphabet = utils.to_alphabet("H:/DL-DATASET/BaiduTextR/train.list")
 
     # store model path
@@ -182,5 +175,4 @@ if __name__ == '__main__':
     else:
         optimizer = optim.RMSprop(crnn.parameters(), lr=params.lr)
 
-    crnn.register_backward_hook(backward_hook)
     main(crnn, train_loader, val_loader, criterion, optimizer)
