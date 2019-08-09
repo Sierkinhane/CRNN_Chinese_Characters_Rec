@@ -11,7 +11,7 @@ import numpy as np
 # from warpctc_pytorch import CTCLoss
 import os
 import utils
-import dataset
+# import dataset
 import models.crnn as crnn
 import re
 import params

@@ -20,7 +20,7 @@ class baiduDataset(Dataset):
 		# print(self.labels[:10])
 		self.alphabet = alphabet
 		self.transforms = transforms
-		self.width, self.hegiht = resize
+		self.width, self.height = resize
 		# print(list(self.labels[1].values())[0])
 	def get_labels(self, label_path):
 		# return text labels in a list
@@ -70,7 +70,7 @@ class baiduDataset(Dataset):
 		# if self.isBaidu:
 		# 	# image = self.compensation(image)
 		# 	image = cv2.resize(image, (0,0), fx=160/w, fy=32/h, interpolation=cv2.INTER_CUBIC)
-		image = cv2.resize(image, (0,0), fx=self.width/w, fy=self.hegiht/h, interpolation=cv2.INTER_CUBIC)
+		image = cv2.resize(image, (0,0), fx=self.width/w, fy=self.height/h, interpolation=cv2.INTER_CUBIC)
 		image = (np.reshape(image, (32, self.width, 1))).transpose(2, 0, 1)
 		image = self.preprocessing(image)
 
