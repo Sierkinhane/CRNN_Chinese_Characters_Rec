@@ -11,7 +11,7 @@ import numpy as np
 # from warpctc_pytorch import CTCLoss
 import os
 import utils
-import dataset
+# import dataset
 import models.crnn as crnn
 import re
 import params
@@ -121,7 +121,7 @@ def main(crnn, train_loader, val_loader, criterion, optimizer):
             p.requires_grad = True
         crnn.train()
         if accuracy > params.best_accuracy:
-            torch.save(crnn.state_dict(), '{0}/crnn_Rec_done_{1}_{2}.pth'.format(params.experiment, total_steps, accuracy))
+            torch.save(crnn.state_dict(), '{0}/crnn_Rec_done_{1}_{2}.pth'.format(params.experiment, Iteration, accuracy))
             torch.save(crnn.state_dict(), '{0}/crnn_best.pth'.format(params.experiment))
         print("is best accuracy: {0}".format(accuracy > params.best_accuracy))
         Iteration+=1
