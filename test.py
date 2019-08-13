@@ -35,8 +35,9 @@ def crnn_recognition(cropped_image, model):
     h, w = image.shape
     image = cv2.resize(image, (0,0), fx=w_now/w, fy=params.imgH/h, interpolation=cv2.INTER_CUBIC)
     image = (np.reshape(image, (params.imgH, w_now, 1))).transpose(2, 0, 1)
+    image = image.astype(np.float32) / 255.
     image = torch.from_numpy(image).type(torch.FloatTensor)
-    image.sub_(0.5).div_(0.5)
+    image.sub_(params.mean).div_(params.std)
     if torch.cuda.is_available():
         image = image.cuda()
     image = image.view(1, *image.size())
