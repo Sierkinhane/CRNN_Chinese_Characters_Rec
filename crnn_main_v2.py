@@ -36,12 +36,12 @@ def weights_init(m):
         m.bias.data.fill_(0)
 
 
-def val(net, val_loader, criterion, iteration, max_i=1000):
+def val(crnn, val_loader, criterion, iteration, max_i=1000):
 
     print('Start val')
     for p in crnn.parameters():
         p.requires_grad = False
-    net.eval()
+    crnn.eval()
     i = 0
     n_correct = 0
     loss_avg = utils.averager()
@@ -85,6 +85,7 @@ def train(crnn, train_loader, criterion, iteration):
     for p in crnn.parameters():
         p.requires_grad = True
     crnn.train()
+    loss_avg = utils.averager()
     for i_batch, (image, index) in enumerate(train_loader):
         image = image.to(device)
         label = utils.get_batch_label(dataset, index)
@@ -168,7 +169,7 @@ if __name__ == '__main__':
         crnn.load_state_dict(torch.load(params.crnn))
 
     # loss averager
-    loss_avg = utils.averager()
+    # loss_avg = utils.averager()
 
     # setup optimizer
     if params.adam:
