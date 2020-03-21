@@ -3,7 +3,6 @@ import torch.utils.data as data
 import os
 import numpy as np
 import cv2
-import lib.utils.utils as utils
 
 class _360CC(data.Dataset):
     def __init__(self, config, is_train=True):

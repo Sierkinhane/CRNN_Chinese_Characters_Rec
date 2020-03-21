@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a6b7592-d33a-448a-b58e-33d059444ec7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/utils/preprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/360CC_config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/360CC_config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/dataset/_360cc.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dataset/_360cc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-07/log/events.out.tfevents.1584824864.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-08/log/events.out.tfevents.1584824890.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-10/log/events.out.tfevents.1584825013.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-10/log/events.out.tfevents.1584825054.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-11/log/events.out.tfevents.1584825089.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-12/log/events.out.tfevents.1584825129.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-13/log/events.out.tfevents.1584825233.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-14/log/events.out.tfevents.1584825246.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-14/log/events.out.tfevents.1584825262.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-15/log/events.out.tfevents.1584825302.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-17/log/events.out.tfevents.1584825463.DESKTOP-LVNAKHJ" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-19/checkpoints/checkpoint_0_acc_0.0000.pth" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/360CC/crnn/2020-03-22-05-19/log/events.out.tfevents.1584825548.DESKTOP-LVNAKHJ" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,11 +69,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
+            <state relative-caret-position="432">
+              <caret line="118" column="34" lean-forward="true" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -75,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/core/function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
+            <state relative-caret-position="622">
               <caret line="110" selection-start-line="110" selection-end-line="110" />
             </state>
           </provider>
@@ -93,11 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/dataset/_360cc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+            <state relative-caret-position="88">
+              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -160,10 +169,10 @@
         <option value="$PROJECT_DIR$/lib/utils/utils.py" />
         <option value="$PROJECT_DIR$/lib/config/360CC_config.yaml" />
         <option value="$PROJECT_DIR$/lib/utils/preprocessing.py" />
-        <option value="$PROJECT_DIR$/lib/dataset/_360cc.py" />
-        <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/lib/core/function.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/lib/dataset/_360cc.py" />
+        <option value="$PROJECT_DIR$/train.py" />
       </list>
     </option>
   </component>
@@ -220,6 +229,11 @@
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="utils" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="crnn" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="output" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -349,16 +363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="113" column="27" selection-start-line="113" selection-start-column="27" selection-end-line="113" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/utils/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -367,13 +371,6 @@
             <element signature="e#0#27#0" expanded="true" />
             <marker date="1584824065564" expanded="true" signature="4927:4928" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/core/function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
         </state>
       </provider>
     </entry>
@@ -396,10 +393,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/dataset/_360cc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+        <state relative-caret-position="88">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/core/function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="622">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="118" column="34" lean-forward="true" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

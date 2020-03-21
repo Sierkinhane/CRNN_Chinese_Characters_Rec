@@ -62,7 +62,7 @@ def main():
     model = model.to(device)
 
     # define loss function
-    criterion = torch.nn.CTCLoss(reduction='sum')
+    criterion = torch.nn.CTCLoss()
 
     optimizer = utils.get_optimizer(config, model)
 
@@ -108,8 +108,8 @@ def main():
     converter = utils.strLabelConverter(config.DATASET.ALPHABETS)
     for epoch in range(last_epoch, config.TRAIN.END_EPOCH):
 
-        # function.train(config, train_loader, train_dataset, converter, model, criterion, optimizer, device, epoch, writer_dict, output_dict)
-        # lr_scheduler.step()
+        function.train(config, train_loader, train_dataset, converter, model, criterion, optimizer, device, epoch, writer_dict, output_dict)
+        lr_scheduler.step()
 
         acc = function.validate(config, val_loader, val_dataset, converter, model, criterion, device, epoch, writer_dict, output_dict)
 
