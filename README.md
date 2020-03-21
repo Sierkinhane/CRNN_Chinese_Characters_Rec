@@ -38,9 +38,9 @@ A Chinese characters recognition repository based on convolutional recurrent net
 ```
 
 #### loss overview
-<p>
+<center/>
 <img src='images/loss_1.png' title='loss1' style='max-width:800px'></img>
-</p>
+</center>
 <p>
 <img src='images/loss_2.png' title='loss1' style='max-width:600px'></img>
 </p>
