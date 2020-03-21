@@ -15,7 +15,7 @@ A Chinese characters recognition repository based on convolutional recurrent net
 
 ## Dev Environments
 1. WIN 10 or Ubuntu 16.04
-1. **PyTorch 1.4.0 (may fix ctc loss)**
+1. **PyTorch 1.2.0 (may fix ctc loss)**
 2. yaml
 3. easydict
 
