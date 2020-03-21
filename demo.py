@@ -9,7 +9,7 @@ import lib.config.alphabets as alphabets
 import yaml
 from easydict import EasyDict as edict
 import argparse
-
+ 
 def parse_arg():
     parser = argparse.ArgumentParser(description="demo")
 

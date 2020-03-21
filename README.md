@@ -13,18 +13,18 @@ A Chinese characters recognition repository based on convolutional recurrent net
 <img src='images/demo_2.jpg' title='example2' style='max-width:600px'></img>
 </p>
 
+## Dev Environments
+1. WIN 10 or Ubuntu 16.04
+1. **PyTorch 1.4.0 (may fix ctc loss)**
+2. yaml
+3. easydict
+
 ## Data
 #### Synthetic Chinese String Dataset
 1. Download the dataset in [here](https://pan.baidu.com/s/1ufYbnZAZ1q0AlK7yZ08cvQ)
 2. Put *char_std_5990.txt* in **lib/dataset/txt/**
 3. Download the preprocessed labels in [here](https://pan.baidu.com/s/1rd4tm0sCq5fFgB2ziUxcrA) (password:w877)
 4. And put *train.txt* and *test.txt* in **lib/dataset/txt/**
-
-#### Dev Environments
-1. WIN 10 or Ubuntu 16.04
-1. pytorch 1.4.0 (may fix ctcloss)
-2. yaml
-3. easydict
 
 ## Train
 ```angular2html

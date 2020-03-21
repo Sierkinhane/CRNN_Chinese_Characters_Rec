@@ -13,7 +13,6 @@ import lib.config.alphabets as alphabets
 
 from tensorboardX import SummaryWriter
 
-
 def parse_arg():
     parser = argparse.ArgumentParser(description="train crnn")
 
