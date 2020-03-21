@@ -18,6 +18,7 @@ A Chinese characters recognition repository based on convolutional recurrent net
 1. **PyTorch 1.2.0 (may fix ctc loss)**
 2. yaml
 3. easydict
+4. tensorboardX
 
 ## Data
 #### Synthetic Chinese String Dataset
