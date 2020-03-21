@@ -28,8 +28,15 @@ A Chinese characters recognition repository based on convolutional recurrent net
       ROOT: 'to/your/images/path'
 ```
 3. Put *char_std_5990.txt* in **lib/dataset/txt/**
-4. Download the preprocessed labels in [here](https://pan.baidu.com/s/1rd4tm0sCq5fFgB2ziUxcrA) (password: w877)
+4. Download the labels in [here](https://pan.baidu.com/s/1rd4tm0sCq5fFgB2ziUxcrA) (password: w877)
 5. And put *train.txt* and *test.txt* in **lib/dataset/txt/**
+
+    test.txt
+```
+    20456343_4045240981.jpg 89 201 241 178 19 94 19 22 26 656
+    20457281_3395886438.jpg 120 1061 2 376 78 249 272 272 120 1061
+    ...
+```
 
 ## Train
 ```angular2html

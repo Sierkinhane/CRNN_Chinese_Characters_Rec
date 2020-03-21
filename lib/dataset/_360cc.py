@@ -3,6 +3,7 @@ import torch.utils.data as data
 import os
 import numpy as np
 import cv2
+import lib.utils.utils as utils
 
 class _360CC(data.Dataset):
     def __init__(self, config, is_train=True):
@@ -17,10 +18,21 @@ class _360CC(data.Dataset):
         self.mean = np.array(config.DATASET.MEAN, dtype=np.float32)
         self.std = np.array(config.DATASET.STD, dtype=np.float32)
 
+        char_file = config.DATASET.CHAR_FILE
+        with open(char_file, 'rb') as file:
+            char_dict = {num: char.strip().decode('gbk', 'ignore') for num, char in enumerate(file.readlines())}
+
         txt_file = config.DATASET.JSON_FILE['train'] if is_train else config.DATASET.JSON_FILE['val']
-        # create train/val split
+
+        # convert name:indices to name:string
+        self.labels = []
         with open(txt_file, 'r', encoding='utf-8') as file:
-            self.labels = [{c.split(' ')[0]: c.split(' ')[-1][:-1]} for c in file.readlines()]
+            contents = file.readlines()
+            for c in contents:
+                imgname = c.split(' ')[0]
+                indices = c.split(' ')[1:]
+                string = ''.join([char_dict[int(idx)] for idx in indices])
+                self.labels.append({imgname: string})
 
         print("load {} images!".format(self.__len__()))
 

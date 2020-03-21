@@ -147,3 +147,7 @@ class strLabelConverter(object):
                         t[index:index + l], torch.IntTensor([l]), raw=raw))
                 index += l
             return texts
+
+def get_char_dict(path):
+    with open(path, 'rb') as file:
+        char_dict = {num: char.strip().decode('gbk', 'ignore') for num, char in enumerate(file.readlines())}
