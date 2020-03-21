@@ -13,7 +13,7 @@ CUDNN:
 DATASET:
   DATASET: 360CC
   ROOT: "H:/DL-DATASET/360M/images"
-  JSON_FILE: {'train': 'H:/DL-DATASET/360M/train.txt', 'val': 'H:/DL-DATASET/360M/test.txt'}
+  JSON_FILE: {'train': 'lib/dataset/txt/train.txt', 'val': 'lib/dataset/txt/test.txt'}
   SCALE_FACTOR: 0.25
   ROT_FACTOR: 30
   STD: 0.193
