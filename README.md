@@ -15,12 +15,12 @@ A Chinese characters recognition repository based on convolutional recurrent net
 
 ## Dev Environments
 1. WIN 10 or Ubuntu 16.04
-1. **PyTorch 1.2.0 (may fix ctc loss)**
-2. yaml
-3. easydict
-4. tensorboardX
+2. **PyTorch 1.2.0 (may fix ctc loss)** with cuda 10.0
+3. yaml
+4. easydict
+5. tensorboardX
 
-## Data
+### Data
 #### Synthetic Chinese String Dataset
 1. Download the dataset in [here](https://pan.baidu.com/s/1ufYbnZAZ1q0AlK7yZ08cvQ)
 2. Edit **lib/config/360CC_config.yaml** DATA:ROOT to you image path
@@ -32,12 +32,27 @@ A Chinese characters recognition repository based on convolutional recurrent net
 4. Download the labels in [here](https://pan.baidu.com/s/1rd4tm0sCq5fFgB2ziUxcrA) (password: w877)
 5. And put *train.txt* and *test.txt* in **lib/dataset/txt/**
 
-    test.txt
+    eg. test.txt
 ```
     20456343_4045240981.jpg 89 201 241 178 19 94 19 22 26 656
     20457281_3395886438.jpg 120 1061 2 376 78 249 272 272 120 1061
     ...
 ```
+#### Your own data
+1. Edit **lib/config/OWN_config.yaml** DATA:ROOT to you image path
+```angular2html
+    DATASET:
+      ROOT: 'to/your/images/path'
+```
+2. And put your *train_own.txt* and *test_own.txt* in **lib/dataset/txt/**
+
+    eg. test_own.txt
+```
+    20456343_4045240981.jpg 你好啊！祖国！
+    20457281_3395886438.jpg 晚安啊！世界！
+    ...
+```
+**note**: fixed-length supported. yet you can modify dataloader to support random length.   
 
 ## Train
 ```angular2html
@@ -47,15 +62,15 @@ A Chinese characters recognition repository based on convolutional recurrent net
 
 ```angular2html
    [run] cd output/360CC/crnn/xxxx-xx-xx-xx-xx/
-   [run] tensorboard --log_dir log
+   [run] tensorboard --logdir log
 ```
 
 #### loss overview
 <center/>
-<img src='images/loss_1.png' title='loss1' style='max-width:800px'></img>
+<img src='images/train_loss.png' title='loss1' style='max-width:800px'></img>
 </center>
 <p>
-<img src='images/loss_2.png' title='loss1' style='max-width:600px'></img>
+<img src='images/tb_loss.png' title='loss1' style='max-width:600px'></img>
 </p>
 
 ## Demo

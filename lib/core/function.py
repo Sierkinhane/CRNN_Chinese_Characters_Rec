@@ -70,7 +70,7 @@ def train(config, train_loader, dataset, converter, model, criterion, optimizer,
             if writer_dict:
                 writer = writer_dict['writer']
                 global_steps = writer_dict['train_global_steps']
-                writer.add_scalar('train_loss', losses.val, global_steps)
+                writer.add_scalar('train_loss', losses.avg, global_steps)
                 writer_dict['train_global_steps'] = global_steps + 1
 
         end = time.time()

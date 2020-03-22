@@ -11,11 +11,9 @@ CUDNN:
   ENABLED: True
 
 DATASET:
-  DATASET: 360CC
+  DATASET: OWN
   ROOT: "H:/DL-DATASET/360M/images"
-  CHAR_FILE: 'lib/dataset/txt/char_std_5990.txt'
-  JSON_FILE: {'train': 'lib/dataset/txt/train.txt', 'val': 'lib/dataset/txt/test.txt'}
-#  JSON_FILE: {'train': 'H:/DL-DATASET/360M/train.txt', 'val': 'H:/DL-DATASET/360M/test.txt'}
+  JSON_FILE: {'train': 'lib/dataset/txt/train_own.txt', 'val': 'lib/dataset/txt/test_own.txt'}
   SCALE_FACTOR: 0.25
   ROT_FACTOR: 30
   STD: 0.193
