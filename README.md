@@ -65,7 +65,7 @@ A Chinese characters recognition repository based on convolutional recurrent net
    [run] tensorboard --logdir log
 ```
 
-#### loss overview
+#### loss overview(first epoch)
 <center/>
 <img src='images/train_loss.png' title='loss1' style='max-width:800px'></img>
 </center>
