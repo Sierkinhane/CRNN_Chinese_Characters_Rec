@@ -38,7 +38,7 @@ A Chinese characters recognition repository based on convolutional recurrent net
     20457281_3395886438.jpg 120 1061 2 376 78 249 272 272 120 1061
     ...
 ```
-#### Your own data
+#### Or your own data
 1. Edit **lib/config/OWN_config.yaml** DATA:ROOT to you image path
 ```angular2html
     DATASET:
@@ -57,6 +57,8 @@ A Chinese characters recognition repository based on convolutional recurrent net
 ## Train
 ```angular2html
    [run] python train.py --cfg lib/config/360CC_config.yaml
+or [run] python train.py --cfg lib/config/OWN_config.yaml
+```
 ```
 #### loss curve
 
