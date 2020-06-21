@@ -64,17 +64,8 @@ def main():
     # define loss function
     criterion = torch.nn.CTCLoss()
 
-    optimizer = utils.get_optimizer(config, model)
-
     last_epoch = config.TRAIN.BEGIN_EPOCH
-    if config.TRAIN.RESUME.IS_RESUME:
-        model_state_file = config.TRAIN.RESUME.FILE
-        if model_state_file == '':
-            print(" => no checkpoint found")
-        checkpoint = torch.load(model_state_file, map_location='cpu')
-        model.load_state_dict(checkpoint['state_dict'])
-        last_epoch = checkpoint['epoch']
-
+    optimizer = utils.get_optimizer(config, model)
     if isinstance(config.TRAIN.LR_STEP, list):
         lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(
             optimizer, config.TRAIN.LR_STEP,
@@ -85,6 +76,16 @@ def main():
             optimizer, config.TRAIN.LR_STEP,
             config.TRAIN.LR_FACTOR, last_epoch - 1
         )
+
+    if config.TRAIN.RESUME.IS_RESUME:
+        model_state_file = config.TRAIN.RESUME.FILE
+        if model_state_file == '':
+            print(" => no checkpoint found")
+        checkpoint = torch.load(model_state_file, map_location='cpu')
+        model.load_state_dict(checkpoint['state_dict'])
+        # optimizer.load_state_dict(checkpoint['optimizer'])
+        # lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
+        last_epoch = checkpoint['epoch']
 
     train_dataset = get_dataset(config)(config, is_train=True)
     train_loader = DataLoader(
@@ -123,6 +124,8 @@ def main():
             {
                 "state_dict": model.state_dict(),
                 "epoch": epoch + 1,
+                # "optimizer": optimizer.state_dict(),
+                # "lr_scheduler": lr_scheduler.state_dict(),
                 "best_acc": best_acc,
             },  os.path.join(output_dict['chs_dir'], "checkpoint_{}_acc_{:.4f}.pth".format(epoch, acc))
         )

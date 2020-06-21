@@ -31,10 +31,15 @@ def parse_arg():
 
 def recognition(config, img, model, converter, device):
 
-    # ratio resize
-    w_cur = int(img.shape[1] / (config.MODEL.IMAGE_SIZE.OW / config.MODEL.IMAGE_SIZE.W))
+    # github issues: https://github.com/Sierkinhane/CRNN_Chinese_Characters_Rec/issues/211
     h, w = img.shape
-    img = cv2.resize(img, (0, 0), fx=w_cur / w, fy=config.MODEL.IMAGE_SIZE.H / h, interpolation=cv2.INTER_CUBIC)
+    # fisrt step: resize the height and width of image to (32, x)
+    img = cv2.resize(img, (0, 0), fx=config.MODEL.IMAGE_SIZE.H / h, fy=config.MODEL.IMAGE_SIZE.H / h, interpolation=cv2.INTER_CUBIC)
+
+    # second step: keep the ratio of image's text same with training
+    h, w = img.shape
+    w_cur = int(img.shape[1] / (config.MODEL.IMAGE_SIZE.OW / config.MODEL.IMAGE_SIZE.W))
+    img = cv2.resize(img, (0, 0), fx=w_cur / w, fy=1.0, interpolation=cv2.INTER_CUBIC)
     img = np.reshape(img, (config.MODEL.IMAGE_SIZE.H, w_cur, 1))
 
     # normalize
