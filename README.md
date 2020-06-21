@@ -54,7 +54,7 @@ A Chinese characters recognition repository based on convolutional recurrent net
     20457281_3395886438.jpg 晚安啊！世界！
     ...
 ```
-**note**: fixed-length supported. yet you can modify dataloader to support random length.   
+**note**: fixed-length training is supported. yet you can modify dataloader to support random length training.   
 
 ## Train
 ```angular2html
