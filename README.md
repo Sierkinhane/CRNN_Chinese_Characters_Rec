@@ -22,7 +22,7 @@ A Chinese characters recognition repository based on convolutional recurrent net
 
 ### Data
 #### Synthetic Chinese String Dataset
-1. Download the dataset in [here](https://pan.baidu.com/s/1ufYbnZAZ1q0AlK7yZ08cvQ)
+1. Download the [dataset](https://pan.baidu.com/s/1ufYbnZAZ1q0AlK7yZ08cvQ)
 2. Edit **lib/config/360CC_config.yaml** DATA:ROOT to you image path
 
 ```angular2html
@@ -30,7 +30,7 @@ A Chinese characters recognition repository based on convolutional recurrent net
       ROOT: 'to/your/images/path'
 ```
 
-3. Download the labels in [here](https://pan.baidu.com/s/1oOKFDt7t0Wg6ew2uZUN9xg) (password: eaqb)
+3. Download the [labels](https://pan.baidu.com/s/1oOKFDt7t0Wg6ew2uZUN9xg) (password: eaqb)
 4. Put *char_std_5990.txt* in **lib/dataset/txt/**
 5. And put *train.txt* and *test.txt* in **lib/dataset/txt/**
 
