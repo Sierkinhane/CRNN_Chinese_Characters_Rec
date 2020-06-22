@@ -83,6 +83,9 @@ def main():
         if model_state_file == '':
             print(" => no checkpoint found")
         checkpoint = torch.load(model_state_file, map_location='cpu')
+        if 'state_dict' in checkpoint.keys():
+            checkpoint = checkpoint['state_dict']
+
         from collections import OrderedDict
         model_dict = OrderedDict()
         for k, v in checkpoint.items():
@@ -98,10 +101,13 @@ def main():
         if model_state_file == '':
             print(" => no checkpoint found")
         checkpoint = torch.load(model_state_file, map_location='cpu')
-        model.load_state_dict(checkpoint['state_dict'])
-        # optimizer.load_state_dict(checkpoint['optimizer'])
-        # lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
-        last_epoch = checkpoint['epoch']
+        if 'state_dict' in checkpoint.keys():
+            model.load_state_dict(checkpoint['state_dict'])
+            last_epoch = checkpoint['epoch']
+            # optimizer.load_state_dict(checkpoint['optimizer'])
+            # lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
+        else:
+            model.load_state_dict(checkpoint)
 
     model_info(model)
     train_dataset = get_dataset(config)(config, is_train=True)

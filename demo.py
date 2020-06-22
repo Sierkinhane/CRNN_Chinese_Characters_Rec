@@ -53,7 +53,6 @@ def recognition(config, img, model, converter, device):
     model.eval()
     preds = model(img)
 
-    print(preds.shape)
     _, preds = preds.max(2)
     preds = preds.transpose(1, 0).contiguous().view(-1)
 
@@ -62,7 +61,6 @@ def recognition(config, img, model, converter, device):
 
     print('results: {0}'.format(sim_pred))
 
-
 if __name__ == '__main__':
 
     config, args = parse_arg()
@@ -70,7 +68,11 @@ if __name__ == '__main__':
 
     model = crnn.get_crnn(config).to(device)
     print('loading pretrained model from {0}'.format(args.checkpoint))
-    model.load_state_dict(torch.load(args.checkpoint))
+    checkpoint = torch.load(args.checkpoint)
+    if 'state_dict' in checkpoint.keys():
+        model.load_state_dict(checkpoint['state_dict'])
+    else:
+        model.load_state_dict(checkpoint)
 
     started = time.time()
 
