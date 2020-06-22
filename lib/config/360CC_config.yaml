@@ -46,14 +46,14 @@ TRAIN:
 
 TEST:
   BATCH_SIZE_PER_GPU: 16
-  SHUFFLE: True
+  SHUFFLE: True  # for random test rather than test on the whole validation set
   NUM_TEST: 1000
   NUM_TEST_DISP: 10
 
 MODEL:
   NAME: 'crnn'
   IMAGE_SIZE:
-    OW: 280. # origial width: 280
+    OW: 280 # origial width: 280
     H: 32
     W: 160   # resized width: 160
   NUM_CLASSES: 0
