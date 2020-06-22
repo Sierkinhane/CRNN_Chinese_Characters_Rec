@@ -53,11 +53,13 @@ def recognition(config, img, model, converter, device):
     model.eval()
     preds = model(img)
 
+    print(preds.shape)
     _, preds = preds.max(2)
     preds = preds.transpose(1, 0).contiguous().view(-1)
 
     preds_size = Variable(torch.IntTensor([preds.size(0)]))
     sim_pred = converter.decode(preds.data, preds_size.data, raw=False)
+
     print('results: {0}'.format(sim_pred))
 
 

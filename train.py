@@ -10,6 +10,7 @@ import lib.utils.utils as utils
 from lib.dataset import get_dataset
 from lib.core import function
 import lib.config.alphabets as alphabets
+from lib.utils.utils import model_info
 
 from tensorboardX import SummaryWriter
 
@@ -77,7 +78,22 @@ def main():
             config.TRAIN.LR_FACTOR, last_epoch - 1
         )
 
-    if config.TRAIN.RESUME.IS_RESUME:
+    if config.TRAIN.FINETUNE.IS_FINETUNE:
+        model_state_file = config.TRAIN.FINETUNE.FINETUNE_CHECKPOINIT
+        if model_state_file == '':
+            print(" => no checkpoint found")
+        checkpoint = torch.load(model_state_file, map_location='cpu')
+        from collections import OrderedDict
+        model_dict = OrderedDict()
+        for k, v in checkpoint.items():
+            if 'cnn' in k:
+                model_dict[k[4:]] = v
+        model.cnn.load_state_dict(model_dict)
+        if config.TRAIN.FINETUNE.FREEZE:
+            for p in model.cnn.parameters():
+                p.requires_grad = False
+
+    elif config.TRAIN.RESUME.IS_RESUME:
         model_state_file = config.TRAIN.RESUME.FILE
         if model_state_file == '':
             print(" => no checkpoint found")
@@ -87,6 +103,7 @@ def main():
         # lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
         last_epoch = checkpoint['epoch']
 
+    model_info(model)
     train_dataset = get_dataset(config)(config, is_train=True)
     train_loader = DataLoader(
         dataset=train_dataset,

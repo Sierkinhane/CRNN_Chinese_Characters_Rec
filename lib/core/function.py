@@ -45,8 +45,8 @@ def train(config, train_loader, dataset, converter, model, criterion, optimizer,
 
         # compute loss
         batch_size = inp.size(0)
-        text, length = converter.encode(labels)
-        preds_size = torch.IntTensor([preds.size(0)] * batch_size)
+        text, length = converter.encode(labels)                    # length = 一个batch中的总字符长度, text = 一个batch中的字符所对应的下标
+        preds_size = torch.IntTensor([preds.size(0)] * batch_size) # timestep * batchsize
         loss = criterion(preds, text, preds_size, length)
 
         optimizer.zero_grad()
