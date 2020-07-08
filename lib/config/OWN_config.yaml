@@ -37,6 +37,10 @@ TRAIN:
   NESTEROV: False
   RMSPROP_ALPHA:
   RMSPROP_CENTERED:
+  FINETUNE:
+    IS_FINETUNE: true
+    FINETUNE_CHECKPOINIT: 'output/checkpoints/mixed_second_finetune_acc_97P7.pth'
+    FREEZE: true
 
 TEST:
   BATCH_SIZE_PER_GPU: 16
