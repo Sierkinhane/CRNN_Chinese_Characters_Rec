@@ -2,6 +2,9 @@
 
 A Chinese characters recognition repository based on convolutional recurrent networks. 
 
+<p align='center'>
+<img src='images/wechatgroup.jpg' title='example' style='max-width:600px'></img>
+</p>
 ## Performance
 
 #### Recognize characters in pictures
@@ -84,6 +87,7 @@ or [run] python train.py --cfg lib/config/OWN_config.yaml
 ## References
 - https://github.com/meijieru/crnn.pytorch
 - https://github.com/HRNet
+
 
 
 
