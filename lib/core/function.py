@@ -116,8 +116,11 @@ def validate(config, val_loader, dataset, converter, model, criterion, device, e
     for raw_pred, pred, gt in zip(raw_preds, sim_preds, labels):
         print('%-20s => %-20s, gt: %-20s' % (raw_pred, pred, gt))
 
-    print(n_correct)
-    print(config.TEST.NUM_TEST* config.TEST.BATCH_SIZE_PER_GPU)
+    num_test_sample = config.TEST.NUM_TEST_BATCH * config.TEST.BATCH_SIZE_PER_GPU
+    if num_test_sample > len(dataset):
+        num_test_sample = len(dataset)
+
+    print("[#correct:{} / #total:{}]".format(n_correct, num_test_sample))
     accuracy = n_correct / float(config.TEST.NUM_TEST * config.TEST.BATCH_SIZE_PER_GPU)
     print('Test loss: {:.4f}, accuray: {:.4f}'.format(losses.avg, accuracy))
 

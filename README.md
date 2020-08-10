@@ -5,6 +5,7 @@ A Chinese characters recognition repository based on convolutional recurrent net
 <p align='center'>
 <img src='images/wechatgroup.jpg' title='example' style='max-width:600px'></img>
 </p>
+
 ## Performance
 
 #### Recognize characters in pictures

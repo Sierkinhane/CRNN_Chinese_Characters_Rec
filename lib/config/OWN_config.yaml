@@ -44,8 +44,8 @@ TRAIN:
 
 TEST:
   BATCH_SIZE_PER_GPU: 16
-  SHUFFLE: True
-  NUM_TEST: 1000
+  SHUFFLE: True  # for random test rather than test on the whole validation set
+  NUM_TEST_BATCH: 1000
   NUM_TEST_DISP: 10
 
 MODEL:
