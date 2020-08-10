@@ -121,7 +121,7 @@ def validate(config, val_loader, dataset, converter, model, criterion, device, e
         num_test_sample = len(dataset)
 
     print("[#correct:{} / #total:{}]".format(n_correct, num_test_sample))
-    accuracy = n_correct / float(config.TEST.NUM_TEST * config.TEST.BATCH_SIZE_PER_GPU)
+    accuracy = n_correct / float(num_test_sample)
     print('Test loss: {:.4f}, accuray: {:.4f}'.format(losses.avg, accuracy))
 
     if writer_dict:
