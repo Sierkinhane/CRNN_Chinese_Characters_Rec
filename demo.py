@@ -52,7 +52,7 @@ def recognition(config, img, model, converter, device):
     img = img.view(1, *img.size())
     model.eval()
     preds = model(img)
-
+    print(preds.shape)
     _, preds = preds.max(2)
     preds = preds.transpose(1, 0).contiguous().view(-1)
 
