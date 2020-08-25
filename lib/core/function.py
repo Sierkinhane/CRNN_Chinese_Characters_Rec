@@ -109,7 +109,7 @@ def validate(config, val_loader, dataset, converter, model, criterion, device, e
             if (i + 1) % config.PRINT_FREQ == 0:
                 print('Epoch: [{0}][{1}/{2}]'.format(epoch, i, len(val_loader)))
 
-            if i == config.TEST.NUM_TEST:
+            if i == config.TEST.NUM_TEST_BATCH:
                 break
 
     raw_preds = converter.decode(preds.data, preds_size.data, raw=True)[:config.TEST.NUM_TEST_DISP]
