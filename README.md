@@ -83,7 +83,7 @@ or [run] python train.py --cfg lib/config/OWN_config.yaml
 
 ## Demo
 ```angular2html
-   [run] python demo.py --image_path images/test.png --checkpoints output/checkpoints/mixed_second_finetune_acc_97P7.pth
+   [run] python demo.py --image_path images/test.png --checkpoint output/checkpoints/mixed_second_finetune_acc_97P7.pth
 ```
 ## References
 - https://github.com/meijieru/crnn.pytorch
