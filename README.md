@@ -3,7 +3,7 @@
 A Chinese characters recognition repository based on convolutional recurrent networks. 
 
 <p align='center'>
-<img src='images/wechat.png' title='example' style='max-width:100px'></img>
+<img src='images/wechat.png' title='example' style='max-width:100px' width=150 height=150></img>
 </p>
 
 ## Performance
