@@ -1,0 +1,61 @@
+GPUID: 0
+WORKERS: 1
+PRINT_FREQ: 10
+SAVE_FREQ: 10
+PIN_MEMORY: False
+OUTPUT_DIR: 'output'
+
+CUDNN:
+  BENCHMARK: True
+  DETERMINISTIC: False
+  ENABLED: True
+
+DATASET:
+  DATASET: 360CC
+  ROOT: "H:/DL-DATASET/360M/images"
+  CHAR_FILE: 'lib/dataset/txt/char_std_5990.txt'
+  JSON_FILE: {'train': 'lib/dataset/txt/train.txt', 'val': 'lib/dataset/txt/test.txt'}
+#  JSON_FILE: {'train': 'H:/DL-DATASET/360M/train.txt', 'val': 'H:/DL-DATASET/360M/test.txt'}
+  SCALE_FACTOR: 0.25
+  ROT_FACTOR: 30
+  STD: 0.193
+  MEAN: 0.588
+  ALPHABETS: ''
+
+TRAIN:
+  BATCH_SIZE_PER_GPU: 32
+  SHUFFLE: True
+  BEGIN_EPOCH: 0
+  END_EPOCH: 100
+  RESUME:
+    IS_RESUME: False
+    FILE: ''
+  OPTIMIZER: 'adam'
+  LR: 0.0001
+  WD: 0.0
+  LR_STEP: [60, 80]
+  LR_FACTOR: 0.1
+  MOMENTUM: 0.0
+  NESTEROV: False
+  RMSPROP_ALPHA:
+  RMSPROP_CENTERED:
+  FINETUNE:
+    IS_FINETUNE: true
+    FINETUNE_CHECKPOINIT: 'output/checkpoints/mixed_second_finetune_acc_97P7.pth'
+    FREEZE: true
+
+TEST:
+  BATCH_SIZE_PER_GPU: 16
+  SHUFFLE: True  # for random test rather than test on the whole validation set
+  NUM_TEST_BATCH: 1000
+  NUM_TEST_DISP: 10
+
+MODEL:
+  NAME: 'crnn'
+  IMAGE_SIZE:
+    OW: 280 # origial width: 280
+    H: 32
+    W: 160   # resized width: 160
+  NUM_CLASSES: 0
+  NUM_HIDDEN: 256
+
