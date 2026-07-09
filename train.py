@@ -23,7 +23,7 @@ def parse_arg():
 
     with open(args.cfg, 'r') as f:
         # config = yaml.load(f, Loader=yaml.FullLoader)
-        config = yaml.load(f)
+        config = yaml.safe_load(f)
         config = edict(config)
 
     config.DATASET.ALPHABETS = alphabets.alphabet
