@@ -21,7 +21,7 @@ def parse_arg():
     args = parser.parse_args()
 
     with open(args.cfg, 'r') as f:
-        config = yaml.load(f)
+        config = yaml.safe_load(f)
         config = edict(config)
 
     config.DATASET.ALPHABETS = alphabets.alphabet
